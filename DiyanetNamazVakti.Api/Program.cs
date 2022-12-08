@@ -1,11 +1,3 @@
-using DiyanetNamazVakti.Api.Core.Caching;
-using DiyanetNamazVakti.Api.Core.Settings;
-using DiyanetNamazVakti.Api.Service;
-using DiyanetNamazVakti.Api.Service.Implementations;
-using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -20,6 +12,9 @@ builder.Services.Configure<CacheSettings>(builder.Configuration.GetSection(nameo
 builder.Services.AddSingleton<ICacheSettings>(sp => sp.GetRequiredService<IOptions<CacheSettings>>().Value);
 builder.Services.AddSingleton<IMemoryCache, MemoryCache>();
 builder.Services.AddSingleton<ICacheService, MemoryCacheService>();
+
+builder.Services.AddScoped<IAwqatSalahService, AwqatSalahApiService>();
+
 builder.Services.AddTransient<IPlaceService, PlaceService>();
 
 builder.Services.AddControllers();

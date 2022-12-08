@@ -13,4 +13,10 @@ global using DiyanetNamazVakti.Api.Service.Models;
 global using DiyanetNamazVakti.Api.Core.ValueObjects;
 global using DiyanetNamazVakti.Api.Core;
 global using DiyanetNamazVakti.Api.Core.Constants;
+global using DiyanetNamazVakti.Api.Core.Caching;
+global using DiyanetNamazVakti.Api.Core.Settings;
+global using DiyanetNamazVakti.Api.Service;
+global using DiyanetNamazVakti.Api.Service.Implementations;
+global using Microsoft.Extensions.Caching.Memory;
+global using Microsoft.Extensions.Options;
 
