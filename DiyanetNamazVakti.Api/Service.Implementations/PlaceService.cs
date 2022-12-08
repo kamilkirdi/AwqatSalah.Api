@@ -29,7 +29,6 @@ namespace DiyanetNamazVakti.Api.Service.Implementations
         /// <returns></returns>
         public async Task<List<IdCodeName<int>>> GetCountries(CancellationToken cancellationToken)
         {
-
             var client = _clientFactory.CreateClient("AwqatSalahApi");
             var request = string.Format("Auth/Login");
 
