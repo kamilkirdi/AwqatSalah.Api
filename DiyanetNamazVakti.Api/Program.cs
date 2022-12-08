@@ -13,7 +13,7 @@ builder.Services.AddSingleton<ICacheSettings>(sp => sp.GetRequiredService<IOptio
 builder.Services.AddSingleton<IMemoryCache, MemoryCache>();
 builder.Services.AddSingleton<ICacheService, MemoryCacheService>();
 
-builder.Services.AddScoped<IAwqatSalahService, AwqatSalahApiService>();
+builder.Services.AddScoped<IAwqatSalahConnectService, AwqatSalahApiService>();
 
 builder.Services.AddTransient<IPlaceService, PlaceService>();
 
