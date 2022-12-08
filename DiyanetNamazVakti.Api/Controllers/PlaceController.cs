@@ -1,13 +1,9 @@
-﻿using MailKit.Search;
-using Microsoft.AspNetCore.Authorization;
-using System.Diagnostics;
+﻿using Microsoft.AspNetCore.Mvc;
 
-namespace PrayerTime.Web.Api.Controllers;
+namespace DiyanetNamazVakti.Api.Web.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-[PrayerTimeApiAuthorize]
-//[EnableRateLimiting(nameof(RateLimitConstants.DefaultRateLimit))]
 public class PlaceController : ControllerBase
 {
     private readonly IPlaceService _placeService;
@@ -51,33 +47,5 @@ public class PlaceController : ControllerBase
     public async Task<ActionResult<IResult>> CityDetail(int cityId)
     {
         return new SuccessDataResult<CityDetailModel>(await _placeService.GetCity(cityId));
-    }
-
-    [HttpGet("Mosques")]
-    public async Task<ActionResult<IResult>> GetAllMosques()
-    {
-        return new SuccessDataResult<List<MosqueModel>>(await _placeService.GetMosques());
-    }
-
-    [HttpGet("MosquesByName")]
-    public async Task<ActionResult<IResult>> GetMosquesByName(string searchTerm)
-    {
-        if (string.IsNullOrEmpty(searchTerm))
-            return new ErrorDataResult<string>(searchTerm, string.Format(Messages.DangerFieldIsEmpty, Dictionary.SearchTerm));
-        if (searchTerm.Length < 3)
-            return new ErrorDataResult<string>(searchTerm, string.Format(Messages.DangerFieldLengthLimit, Dictionary.SearchTerm, 3));
-
-        return new SuccessDataResult<List<MosqueModel>>(await _placeService.GetMosquesByName(searchTerm));
-    }
-
-    [HttpGet("CitiesByName")]
-    public async Task<ActionResult<IResult>> GetCitiesByName(string searchTerm)
-    {
-        if (string.IsNullOrEmpty(searchTerm))
-            return new ErrorDataResult<string>(searchTerm, string.Format(Messages.DangerFieldIsEmpty, Dictionary.SearchTerm));
-        if (searchTerm.Length < 3)
-            return new ErrorDataResult<string>(searchTerm, string.Format(Messages.DangerFieldLengthLimit, Dictionary.SearchTerm, 3));
-
-        return new SuccessDataResult<List<CityStateCountryWithLangModel>>(await _placeService.GetCitiesByName(searchTerm));
     }
 }

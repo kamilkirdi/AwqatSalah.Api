@@ -1,6 +1,5 @@
 global using System.ComponentModel;
 global using System.Globalization;
-global using System.Linq.Expressions;
 global using System.Reflection;
 global using System.Security.Cryptography;
 global using System.Text;
@@ -19,4 +18,6 @@ global using DiyanetNamazVakti.Api.Service;
 global using DiyanetNamazVakti.Api.Service.Implementations;
 global using Microsoft.Extensions.Caching.Memory;
 global using Microsoft.Extensions.Options;
+global using IResult = DiyanetNamazVakti.Api.Core.IResult;
+
 

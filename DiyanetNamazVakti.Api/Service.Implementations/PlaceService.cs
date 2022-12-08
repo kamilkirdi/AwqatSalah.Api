@@ -84,7 +84,7 @@ namespace DiyanetNamazVakti.Api.Service.Implementations
         private async Task<List<CityModel>> GetAllCities()
         {
             return await _cacheService.GetOrCreateAsync(MethodBase.GetCurrentMethod()!.DeclaringType!.FullName!,
-                async () => await _awqatSalahApiService.GetAwqatSalahApiService<List<IdCodeName<int>>>($"/api/Place/Cities", new CancellationToken()));
+                async () => await _awqatSalahApiService.GetAwqatSalahApiService<List<CityModel>>($"/api/Place/Cities", new CancellationToken()));
         }
     }
 }
