@@ -9,7 +9,6 @@ namespace DiyanetNamazVakti.Api.Service.Implementations
     public class PlaceService : IPlaceService
     {
         private readonly ICacheService _cacheService;
-        private readonly IHttpClientFactory _clientFactory;
         private readonly IAwqatSalahService _awqatSalahApiService;
 
         public PlaceService(ICacheService cacheService, IAwqatSalahService awqatSalahApiService)
