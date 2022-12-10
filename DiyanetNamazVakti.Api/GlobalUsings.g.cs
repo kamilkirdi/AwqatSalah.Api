@@ -18,6 +18,9 @@ global using DiyanetNamazVakti.Api.Service;
 global using DiyanetNamazVakti.Api.Service.Implementations;
 global using Microsoft.Extensions.Caching.Memory;
 global using Microsoft.Extensions.Options;
+global using DiyanetNamazVakti.Api.Core.Enums;
+global using DiyanetNamazVakti.Api.Core.Heplers;
+
 global using IResult = DiyanetNamazVakti.Api.Core.IResult;
 
 

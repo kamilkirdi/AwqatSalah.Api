@@ -1,5 +1,4 @@
 using DiyanetNamazVakti.Api.Core.Heplers;
-using Microsoft.Extensions.Caching.Memory;
 
 namespace DiyanetNamazVakti.Api.Core.Caching
 {

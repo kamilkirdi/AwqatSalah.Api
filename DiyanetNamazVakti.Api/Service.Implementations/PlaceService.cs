@@ -18,7 +18,7 @@ public class PlaceService : IPlaceService
     public async Task<List<IdCodeName<int>>> GetCountries()
     {
         return await _cacheService.GetOrCreateAsync(MethodBase.GetCurrentMethod()!.DeclaringType!.FullName!,
-            async () => await _awqatSalahApiService.GetAwqatSalahApiService<List<IdCodeName<int>>>("/api/Place/Countries", new CancellationToken()));
+            async () => await _awqatSalahApiService.CallService<List<IdCodeName<int>>>("/api/Place/Countries", MethodOption.Get, null, new CancellationToken()));
     }
 
     /// <summary>
@@ -28,7 +28,7 @@ public class PlaceService : IPlaceService
     public async Task<List<IdCodeName<int>>> GetStates()
     {
         return await _cacheService.GetOrCreateAsync(MethodBase.GetCurrentMethod()!.DeclaringType!.FullName!,
-           async () => await _awqatSalahApiService.GetAwqatSalahApiService<List<IdCodeName<int>>>("/api/Place/States", new CancellationToken()));
+           async () => await _awqatSalahApiService.CallService<List<IdCodeName<int>>>("/api/Place/States", MethodOption.Get, null, new CancellationToken()));
     }
 
     /// <summary>
@@ -38,7 +38,7 @@ public class PlaceService : IPlaceService
     public async Task<List<IdCodeName<int>>> GetCities()
     {
         return await _cacheService.GetOrCreateAsync(MethodBase.GetCurrentMethod()!.DeclaringType!.FullName!,
-            async () => await _awqatSalahApiService.GetAwqatSalahApiService<List<IdCodeName<int>>>("/api/Place/Cities", new CancellationToken()));
+            async () => await _awqatSalahApiService.CallService<List<IdCodeName<int>>>("/api/Place/Cities", MethodOption.Get, null, new CancellationToken()));
     }
 
     /// <summary>
@@ -49,7 +49,7 @@ public class PlaceService : IPlaceService
     public async Task<List<IdCodeName<int>>> GetStatesByCountry(int countryId)
     {
         return await _cacheService.GetOrCreateAsync(MethodBase.GetCurrentMethod()!.DeclaringType!.FullName! + "." + countryId,
-            async () => await _awqatSalahApiService.GetAwqatSalahApiService<List<IdCodeName<int>>>($"/api/Place/States/{countryId}", new CancellationToken()));
+            async () => await _awqatSalahApiService.CallService<List<IdCodeName<int>>>($"/api/Place/States/{countryId}", MethodOption.Get, null, new CancellationToken()));
     }
 
     /// <summary>
@@ -60,7 +60,7 @@ public class PlaceService : IPlaceService
     public async Task<List<IdCodeName<int>>> GetCitiesByState(int stateId)
     {
         return await _cacheService.GetOrCreateAsync(MethodBase.GetCurrentMethod()!.DeclaringType!.FullName! + "." + stateId,
-            async () => await _awqatSalahApiService.GetAwqatSalahApiService<List<IdCodeName<int>>>($"/api/Place/Cities/{stateId}", new CancellationToken()));
+            async () => await _awqatSalahApiService.CallService<List<IdCodeName<int>>>($"/api/Place/Cities/{stateId}", MethodOption.Get, null, new CancellationToken()));
     }
 
     /// <summary>
@@ -71,12 +71,12 @@ public class PlaceService : IPlaceService
     public async Task<CityDetailModel> GetCity(int cityId)
     {
         return await _cacheService.GetOrCreateAsync(MethodBase.GetCurrentMethod()!.DeclaringType!.FullName! + "." + cityId,
-            async () => await _awqatSalahApiService.GetAwqatSalahApiService<CityDetailModel>($"/api/Place/CityDetail/{cityId}", new CancellationToken()));
+            async () => await _awqatSalahApiService.CallService<CityDetailModel>($"/api/Place/CityDetail/{cityId}", MethodOption.Get, null, new CancellationToken()));
     }
 
     private async Task<List<CityModel>> GetAllCities()
     {
         return await _cacheService.GetOrCreateAsync(MethodBase.GetCurrentMethod()!.DeclaringType!.FullName!,
-            async () => await _awqatSalahApiService.GetAwqatSalahApiService<List<CityModel>>($"/api/Place/Cities", new CancellationToken()));
+            async () => await _awqatSalahApiService.CallService<List<CityModel>>($"/api/Place/Cities", MethodOption.Get, null, new CancellationToken()));
     }
 }
