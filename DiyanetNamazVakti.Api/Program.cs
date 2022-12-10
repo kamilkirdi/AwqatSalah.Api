@@ -1,6 +1,7 @@
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddCors(options => options.AddDefaultPolicy(builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
 
 // Prayer TimeSettings
 var awqatSalahSettings = builder.Configuration.GetSection(nameof(AwqatSalahSettings));
@@ -13,8 +14,10 @@ builder.Services.AddSingleton<ICacheSettings>(sp => sp.GetRequiredService<IOptio
 builder.Services.AddSingleton<IMemoryCache, MemoryCache>();
 builder.Services.AddSingleton<ICacheService, MemoryCacheService>();
 
+//Api Call Service Dependence
 builder.Services.AddScoped<IAwqatSalahConnectService, AwqatSalahApiService>();
 
+//Service Dependencies
 builder.Services.AddTransient<IPlaceService, PlaceService>();
 builder.Services.AddTransient<IDailyContentService, DailyContentService>();
 builder.Services.AddTransient<IAwqatSalahService, AwqatSalahService>();
@@ -32,6 +35,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors();
 
 app.UseHttpsRedirection();
 
