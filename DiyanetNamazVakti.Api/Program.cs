@@ -16,6 +16,7 @@ builder.Services.AddSingleton<ICacheService, MemoryCacheService>();
 builder.Services.AddScoped<IAwqatSalahConnectService, AwqatSalahApiService>();
 
 builder.Services.AddTransient<IPlaceService, PlaceService>();
+builder.Services.AddTransient<IDailyContentService, DailyContentService>();
 builder.Services.AddTransient<IAwqatSalahService, AwqatSalahService>();
 
 builder.Services.AddControllers();
