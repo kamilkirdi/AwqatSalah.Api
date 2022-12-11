@@ -20,7 +20,7 @@ global using Microsoft.Extensions.Caching.Memory;
 global using Microsoft.Extensions.Options;
 global using DiyanetNamazVakti.Api.Core.Enums;
 global using DiyanetNamazVakti.Api.Core.Heplers;
-
+global using DiyanetNamazVakti.Api.Core.Exceptions;
 global using IResult = DiyanetNamazVakti.Api.Core.IResult;
 
 

@@ -1,3 +1,5 @@
+using DiyanetNamazVakti.Api.Middlewares;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -22,7 +24,18 @@ builder.Services.AddTransient<IPlaceService, PlaceService>();
 builder.Services.AddTransient<IDailyContentService, DailyContentService>();
 builder.Services.AddTransient<IAwqatSalahService, AwqatSalahService>();
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().ConfigureApiBehaviorOptions(options =>
+{
+    options.InvalidModelStateResponseFactory = context =>
+    {
+        var errors = context.ModelState.Where(e => e.Value.Errors.Count > 0).Select(e => new ValidationErrorModel
+        {
+            Name = e.Key,
+            Message = e.Value.Errors.First().ErrorMessage
+        }).ToList();
+        throw new ValidationException(JsonSerializer.Serialize<List<ValidationErrorModel>>(errors));
+    };
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -35,6 +48,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+    app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseCors();
 
