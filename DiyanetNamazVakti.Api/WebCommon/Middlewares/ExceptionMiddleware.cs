@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace DiyanetNamazVakti.Api.Middlewares;
+namespace DiyanetNamazVakti.Api.WebCommon.Middlewares;
 
 public class ExceptionMiddleware
 {
@@ -36,6 +36,10 @@ public class ExceptionMiddleware
             statusCode = HttpStatusCode.NotFound;
         }
         else if (exceptionType == typeof(UnauthorizedAccessException))
+        {
+            statusCode = HttpStatusCode.Unauthorized;
+        }
+        else if (exceptionType == typeof(BadHttpRequestException))
         {
             statusCode = HttpStatusCode.Unauthorized;
         }
