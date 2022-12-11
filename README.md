@@ -6,6 +6,8 @@ Diyanet İşleri Başkanlığı namaz vakitleri Din İşleri Yüksek Kurulu Üye
 
 Uygulama API servisi olarak tasarlanmıştır. Yazılım dili olarak C# ile yazılmıştır. Ortam olarak ise açık kaynak yapıya sahip .Net Core  teknolojisi kullanılmıştır. Ayrıca uygulama geliştirme sürecinde SOLID kurallarına riayet edilmiş, tasarım deseni olarak Repository Pattern kullanılarak bütün bağımlılıklar soyut bir yapıya kavuşturulmuştur
 
+---------------------------------------------
+
 Hello. I'm Kamil KIRDI. I started the software world in 2005 with classic asp. I continued my work as a hobby until 2015, and after this year, projects were developed with .Net and C# technologies, and on the database side with MsSql server and SQL Server Reporting Services and Analysis Services technologies (currently PostgreSql has also been used), the number of projects and users. I continued in the software team of the Presidency of Religious Affairs, which is considerably more. Since 2022, I have been developing applications and supporting existing applications with .Net Core, C#, Angular, PostgreSql and Sql Server technologies at the High Council of Religious Affairs.
 
 Prayer times of the Presidency of Religious Affairs are calculated scientifically and religiously by the Members and Experts of the High Council of Religious Affairs, within the framework of the rules of the Islamic religion, by the Time Calculator Specialist and Astronomers, as well as the necessary technical tools, as well as observations. 
