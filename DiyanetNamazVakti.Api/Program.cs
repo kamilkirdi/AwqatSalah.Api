@@ -48,7 +48,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+else
+{
     app.UseMiddleware<ExceptionMiddleware>();
+}
 
 app.UseCors();
 
