@@ -1,5 +1,4 @@
 using DiyanetNamazVakti.Api.Core.Heplers;
-using Microsoft.Extensions.Caching.Memory;
 
 namespace DiyanetNamazVakti.Api.Core.Caching
 {
@@ -10,6 +9,7 @@ namespace DiyanetNamazVakti.Api.Core.Caching
     public class MemoryCacheService : ICacheService
     {
         private readonly ICacheSettings _cacheSettings;
+        private object _lock = new object();
 
         private readonly IMemoryCache _cache;
         public MemoryCacheService(IMemoryCache cache, ICacheSettings cacheSettings)
@@ -36,8 +36,11 @@ namespace DiyanetNamazVakti.Api.Core.Caching
 
         public void Remove(string key)
         {
-            _cache.Remove(key);
-            RemoveFromKeys(key);
+            lock (_lock)
+            {
+                _cache.Remove(key);
+                RemoveFromKeys(key);
+            }
         }
 
         public void Clear()
@@ -76,36 +79,44 @@ namespace DiyanetNamazVakti.Api.Core.Caching
 
         public List<string> GetAllKeys()
         {
-            var list = new List<string>();
-            if (Any(_cacheSettings.MainKey))
+            lock (_lock)
             {
-                list = Get<List<string>>(_cacheSettings.MainKey);
+                var list = new List<string>();
+                if (Any(_cacheSettings.MainKey))
+                {
+                    list = Get<List<string>>(_cacheSettings.MainKey);
+                }
+                return list;
             }
-            return list;
         }
 
         private void AddToKeys(string key)
         {
-            var keyList = GetAllKeys();
-
-            if (!keyList.Contains(key))
+            lock (_lock)
             {
-                keyList.Add(key);
+                var keyList = GetAllKeys();
+                if (!keyList.Contains(key))
+                {
+                    keyList.Add(key);
+                }
+                _cache.Remove(_cacheSettings.MainKey);
+                _cache.Set(_cacheSettings.MainKey, keyList.SerializeToString().Encrypt(), DateTimeOffset.Now.AddMinutes(_cacheSettings.ExpiryTime));
             }
-            _cache.Remove(_cacheSettings.MainKey);
-            _cache.Set(_cacheSettings.MainKey, keyList.SerializeToString().Encrypt(), DateTimeOffset.Now.AddMinutes(_cacheSettings.ExpiryTime));
         }
 
         private void RemoveFromKeys(string key)
         {
-            var keyList = GetAllKeys();
-
-            if (keyList.Contains(key))
+            lock (_lock)
             {
-                keyList.Remove(key);
+                var keyList = GetAllKeys();
+
+                if (keyList.Contains(key))
+                {
+                    keyList.Remove(key);
+                }
+                _cache.Remove(_cacheSettings.MainKey);
+                _cache.Set(_cacheSettings.MainKey, keyList.SerializeToString().Encrypt(), DateTimeOffset.Now.AddMinutes(_cacheSettings.ExpiryTime));
             }
-            _cache.Remove(_cacheSettings.MainKey);
-            _cache.Set(_cacheSettings.MainKey, keyList.SerializeToString().Encrypt(), DateTimeOffset.Now.AddMinutes(_cacheSettings.ExpiryTime));
         }
 
         public T Get<T>(string key)
