@@ -39,7 +39,7 @@ namespace DiyanetNamazVakti.Api.Core.Globalization {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PrayerTime.Core.Globalization.Dictionary", typeof(Dictionary).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DiyanetNamazVakti.Api.Core.Globalization.Dictionary", typeof(Dictionary).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -66,6 +66,15 @@ namespace DiyanetNamazVakti.Api.Core.Globalization {
         public static string AccessDenied {
             get {
                 return ResourceManager.GetString("AccessDenied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access Token.
+        /// </summary>
+        public static string AccessToken {
+            get {
+                return ResourceManager.GetString("AccessToken", resourceCulture);
             }
         }
         
@@ -1366,6 +1375,15 @@ namespace DiyanetNamazVakti.Api.Core.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Refresh Token.
+        /// </summary>
+        public static string RefreshToken {
+            get {
+                return ResourceManager.GetString("RefreshToken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kayıt olmak İstiyorum.
         /// </summary>
         public static string Register {
@@ -1578,6 +1596,15 @@ namespace DiyanetNamazVakti.Api.Core.Globalization {
         public static string ShowingInPage {
             get {
                 return ResourceManager.GetString("ShowingInPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Birşeyler ters gitti!...
+        /// </summary>
+        public static string SomethingWentWrong {
+            get {
+                return ResourceManager.GetString("SomethingWentWrong", resourceCulture);
             }
         }
         

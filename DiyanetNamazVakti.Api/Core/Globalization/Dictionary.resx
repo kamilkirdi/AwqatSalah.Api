@@ -800,6 +800,10 @@
     <value>Sayfada Gösterilecek Kayıt Sayısı</value>
     <comment>Sayfada Gösterilecek Kayıt Sayısı</comment>
   </data>
+  <data name="SomethingWentWrong" xml:space="preserve">
+    <value>Birşeyler ters gitti!..</value>
+    <comment>Birşeyler ters gitti!..</comment>
+  </data>
   <data name="Source" xml:space="preserve">
     <value>Kaynak</value>
     <comment>Kaynak</comment>

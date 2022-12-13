@@ -1,7 +1,6 @@
-﻿namespace PrayerTime.Service
+﻿namespace DiyanetNamazVakti.Api.Service;
+
+public interface IDailyContentService
 {
-    public interface IDailyContentService
-    {
-        Task<DailyContentModel> DailyContent();
-    }
+    Task<DailyContentModel> DailyContent();
 }

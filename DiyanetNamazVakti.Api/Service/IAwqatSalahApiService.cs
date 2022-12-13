@@ -2,5 +2,5 @@
 
 public interface IAwqatSalahConnectService
 {
-    Task<T> GetAwqatSalahApiService<T>(string path, CancellationToken cancellationToken) where T : class, new();
+    Task<T> CallService<T>(string path, MethodOption method, object model, CancellationToken cancellationToken) where T : class, new();
 }
