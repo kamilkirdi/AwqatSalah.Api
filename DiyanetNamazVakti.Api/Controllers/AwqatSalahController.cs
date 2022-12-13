@@ -8,12 +8,10 @@ namespace DiyanetNamazVakti.Api.Controllers;
 public class AwqatSalahController : ControllerBase
 {
     private readonly IAwqatSalahService _awqatSalahService;
-    private readonly ICacheService _cacheService;
 
-    public AwqatSalahController(IAwqatSalahService awqatSalahService, ICacheService cacheService)
+    public AwqatSalahController(IAwqatSalahService awqatSalahService)
     {
         _awqatSalahService = awqatSalahService;
-        _cacheService = cacheService;
     }
 
     [HttpGet("Daily/{cityId}")]
