@@ -1,9 +1,8 @@
-﻿namespace DiyanetNamazVakti.Api.Core
+﻿namespace DiyanetNamazVakti.Api.Core;
+
+public interface ICacheSettings
 {
-    public interface ICacheSettings
-    {
-        string Prefix { get; set; }
-        string MainKey { get; set; }
-        int ExpiryTime { get; set; }
-    }
+    string Prefix { get; set; }
+    string MainKey { get; set; }
+    int ExpiryTime { get; set; }
 }
