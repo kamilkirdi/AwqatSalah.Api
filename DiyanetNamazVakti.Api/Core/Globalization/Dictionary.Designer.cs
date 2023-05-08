@@ -871,6 +871,15 @@ namespace DiyanetNamazVakti.Api.Core.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Iso.
+        /// </summary>
+        public static string Iso {
+            get {
+                return ResourceManager.GetString("Iso", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SMS Gönderim İzni Veriyor mu?.
         /// </summary>
         public static string IsSmsSending {

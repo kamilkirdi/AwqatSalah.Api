@@ -476,6 +476,10 @@
     <value>Yatsı</value>
     <comment>Yatsı</comment>
   </data>
+  <data name="Iso" xml:space="preserve">
+    <value>Iso</value>
+    <comment>Iso</comment>
+  </data>
   <data name="IsSmsSending" xml:space="preserve">
     <value>SMS Gönderim İzni Veriyor mu?</value>
     <comment>SMS Gönderim İzni Veriyor mu?</comment>

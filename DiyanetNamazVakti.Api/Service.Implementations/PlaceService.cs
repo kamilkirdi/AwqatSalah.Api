@@ -21,6 +21,17 @@ public class PlaceService : IPlaceService
             async () => await _awqatSalahApiService.CallService<List<IdCodeName<int>>>("/api/Place/Countries", MethodOption.Get, null, new CancellationToken()));
     }
 
+
+    /// <summary>
+    /// Ülkeler V2
+    /// </summary>
+    /// <returns></returns>
+    public async Task<List<CountryModel>> GetCountriesV2()
+    {
+        return await _cacheService.GetOrCreateAsync(MethodBase.GetCurrentMethod()!.DeclaringType!.FullName!,
+            async () => await _awqatSalahApiService.CallService<List<CountryModel>>("/api/v2/Place/Countries", MethodOption.Get, null, new CancellationToken()));
+    }
+
     /// <summary>
     /// Eyaletler
     /// </summary>
@@ -32,6 +43,16 @@ public class PlaceService : IPlaceService
     }
 
     /// <summary>
+    /// Eyaletler V2
+    /// </summary>
+    /// <returns></returns>
+    public async Task<List<StateWithParentModel>> GetStatesV2()
+    {
+        return await _cacheService.GetOrCreateAsync(MethodBase.GetCurrentMethod()!.DeclaringType!.FullName!,
+           async () => await _awqatSalahApiService.CallService<List<StateWithParentModel>>("/api/v2/Place/States", MethodOption.Get, null, new CancellationToken()));
+    }
+
+    /// <summary>
     /// Şehirler
     /// </summary>
     /// <returns></returns>
@@ -39,6 +60,16 @@ public class PlaceService : IPlaceService
     {
         return await _cacheService.GetOrCreateAsync(MethodBase.GetCurrentMethod()!.DeclaringType!.FullName!,
             async () => await _awqatSalahApiService.CallService<List<IdCodeName<int>>>("/api/Place/Cities", MethodOption.Get, null, new CancellationToken()));
+    }
+
+    /// <summary>
+    /// Şehirler V2
+    /// </summary>
+    /// <returns></returns>
+    public async Task<List<CityWithParentsModel>> GetCitiesV2()
+    {
+        return await _cacheService.GetOrCreateAsync(MethodBase.GetCurrentMethod()!.DeclaringType!.FullName!,
+            async () => await _awqatSalahApiService.CallService<List<CityWithParentsModel>>("api/v2/Place/Cities", MethodOption.Get, null, new CancellationToken()));
     }
 
     /// <summary>
@@ -53,6 +84,17 @@ public class PlaceService : IPlaceService
     }
 
     /// <summary>
+    /// İlgili Ülkenin Eyalet bilgilerini getirir. V2
+    /// </summary>
+    /// <param name="countryId">Ülke Id</param>
+    /// <returns></returns>
+    public async Task<List<StateWithParentModel>> GetStatesByCountryV2(int countryId)
+    {
+        return await _cacheService.GetOrCreateAsync(MethodBase.GetCurrentMethod()!.DeclaringType!.FullName! + "." + countryId,
+            async () => await _awqatSalahApiService.CallService<List<StateWithParentModel>>($"/api/v2/Place/States/{countryId}", MethodOption.Get, null, new CancellationToken()));
+    }
+
+    /// <summary>
     /// İlgili Eyaletin, Şehir/İlçe bilgilerini getirir.
     /// </summary>
     /// <param name="stateId">Eyalet Id</param>
@@ -61,6 +103,17 @@ public class PlaceService : IPlaceService
     {
         return await _cacheService.GetOrCreateAsync(MethodBase.GetCurrentMethod()!.DeclaringType!.FullName! + "." + stateId,
             async () => await _awqatSalahApiService.CallService<List<IdCodeName<int>>>($"/api/Place/Cities/{stateId}", MethodOption.Get, null, new CancellationToken()));
+    }
+
+    /// <summary>
+    /// İlgili Eyaletin, Şehir/İlçe bilgilerini getirir. V2
+    /// </summary>
+    /// <param name="stateId">Eyalet Id</param>
+    /// <returns></returns>
+    public async Task<List<CityWithParentsModel>> GetCitiesByStateV2(int stateId)
+    {
+        return await _cacheService.GetOrCreateAsync(MethodBase.GetCurrentMethod()!.DeclaringType!.FullName! + "." + stateId,
+            async () => await _awqatSalahApiService.CallService<List<CityWithParentsModel>>($"/api/v2/Place/Cities/{stateId}", MethodOption.Get, null, new CancellationToken()));
     }
 
     /// <summary>

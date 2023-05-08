@@ -1,6 +1,6 @@
 ﻿namespace DiyanetNamazVakti.Api.Service.Models;
 
-public class CityModel
+public class StateWithParentModel
 {
     [Display(Name = nameof(Dictionary.Id), ResourceType = typeof(Dictionary))]
     public int Id { get; set; }
@@ -9,11 +9,9 @@ public class CityModel
     public string Name { get; set; }
 
     [Display(Name = nameof(Dictionary.ForeignName), ResourceType = typeof(Dictionary))]
-    public string EnName { get; set; }
+    public string EnglishName { get; set; }
 
-    [Display(Name = nameof(Dictionary.Latitude), ResourceType = typeof(Dictionary))]
-    public double Latitude { get; set; }
+    [Display(Name = nameof(Dictionary.Country), ResourceType = typeof(Dictionary))]
+    public IdName<int> Country { get; set; }
 
-    [Display(Name = nameof(Dictionary.Longitude), ResourceType = typeof(Dictionary))]
-    public double Longitude { get; set; }
 }
