@@ -1636,6 +1636,15 @@ namespace DiyanetNamazVakti.Api.Core.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Başlangıç tarihi uygun değil!.
+        /// </summary>
+        public static string StartDateNotAvailable {
+            get {
+                return ResourceManager.GetString("StartDateNotAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Başlama Zamanı.
         /// </summary>
         public static string StartTime {
@@ -1947,15 +1956,6 @@ namespace DiyanetNamazVakti.Api.Core.Globalization {
         public static string Version {
             get {
                 return ResourceManager.GetString("Version", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Yıllık Ücret.
-        /// </summary>
-        public static string YearlyPrice {
-            get {
-                return ResourceManager.GetString("YearlyPrice", resourceCulture);
             }
         }
         

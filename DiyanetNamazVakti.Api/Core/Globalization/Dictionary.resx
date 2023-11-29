@@ -816,6 +816,10 @@
     <value>Başlangıç Tarihi</value>
     <comment>Başlangıç Tarihi</comment>
   </data>
+  <data name="StartDateNotAvailable" xml:space="preserve">
+    <value>Başlangıç tarihi uygun değil!</value>
+    <comment>Başlangıç tarihi uygun değil!</comment>
+  </data>
   <data name="StartTime" xml:space="preserve">
     <value>Başlama Zamanı</value>
     <comment>Başlama Zamanı</comment>
@@ -955,10 +959,6 @@
   <data name="Version" xml:space="preserve">
     <value>Sürüm</value>
     <comment>Sürüm</comment>
-  </data>
-  <data name="YearlyPrice" xml:space="preserve">
-    <value>Yıllık Ücret</value>
-    <comment>Yıllık Ücret</comment>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Evet</value>

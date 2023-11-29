@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PrayerTime.Service.Models;
 
 namespace DiyanetNamazVakti.Api.Controllers;
 
@@ -30,6 +31,12 @@ public class AwqatSalahController : ControllerBase
     public async Task<ActionResult<IResult>> AwqatSalahMonthly(int cityId)
     {
         return new SuccessDataResult<List<AwqatSalahModel>>(await _awqatSalahService.MonthlyAwqatSalah(cityId));
+    }
+
+    [HttpPost("Yearly")]
+    public async Task<ActionResult<IResult>> AwqatSalahDateRange([FromBody] DateRangeFilter filter)
+    {
+        return new SuccessDataResult<List<AwqatSalahModel>>(await _awqatSalahService.YearlyAwqatSalah(filter));
     }
 
     [HttpGet("Eid/{cityId}")]

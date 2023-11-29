@@ -38,9 +38,8 @@ public class AwqatSalahApiService : IAwqatSalahConnectService
 
         if (result.IsSuccessStatusCode)
         {
-            using var stream = await result.Content.ReadAsStreamAsync();
-            using var jsonDoc = await JsonDocument.ParseAsync(stream);
-            return jsonDoc.RootElement.GetProperty("data").Deserialize<T>(JsonConstants.SerializerOptions)!;
+            var response = await result.Content.ReadFromJsonAsync<RestDataResult<T>>(JsonConstants.SerializerOptions, cancellationToken);
+            return response!.Data;
         }
         return null;
     }
@@ -99,5 +98,12 @@ public class AwqatSalahApiService : IAwqatSalahConnectService
         var token = jsonDoc.RootElement.GetProperty("data").Deserialize<TokenWithExpireModel>(JsonConstants.SerializerOptions)!;
         token.ExpireTime = DateTime.Now.AddMinutes(_awqatSalahSettings.TokenLifetimeMinutes);
         return token;
+    }
+
+    private class RestDataResult<T>
+    {
+        public bool Success { get; set; }
+        public string Message { get; set; }
+        public T Data { get; set; }
     }
 }

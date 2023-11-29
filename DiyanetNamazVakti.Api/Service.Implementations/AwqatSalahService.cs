@@ -1,4 +1,5 @@
 ﻿using DiyanetNamazVakti.Api.Core.ValueObjects;
+using PrayerTime.Service.Models;
 
 namespace DiyanetNamazVakti.Api.Service.Implementations;
 
@@ -33,10 +34,27 @@ public class AwqatSalahService : IAwqatSalahService
         var result = await _cacheService.GetOrCreateAsync(MethodBase.GetCurrentMethod()!.DeclaringType!.FullName! + cityId,
                    async () => await _awqatSalahApiService.CallService<List<AwqatSalahModel>>("/api/PrayerTime/Monthly/" + cityId,
                    MethodOption.Get, null, new CancellationToken()),
-        DateTime.Now.ResetTimeToEndOfDay());
-        
+        DateTime.Now.AddDays(30).ResetTimeToEndOfDay());
+
         if (result is null)
             _cacheService.Remove(MethodBase.GetCurrentMethod()!.DeclaringType!.FullName! + cityId);
+
+        return result;
+    }
+
+    public async Task<List<AwqatSalahModel>> YearlyAwqatSalah(DateRangeFilter dateRange)
+    {
+        if (dateRange.StartDate > dateRange.EndDate)
+            throw new InvalidTransactionException(Dictionary.StartDateNotAvailable);
+
+        var cacheKey = MethodBase.GetCurrentMethod()!.DeclaringType!.FullName! + "." + dateRange.CityId + "." + dateRange.StartDate.ToShortDateString() + "." + dateRange.EndDate.ToShortDateString();
+        var result = await _cacheService.GetOrCreateAsync(cacheKey,
+            async () => await _awqatSalahApiService.CallService<List<AwqatSalahModel>>("/api/PrayerTime/DateRange",
+                   MethodOption.Post, dateRange, new CancellationToken()),
+        dateRange.EndDate.ResetTimeToEndOfDay());
+
+        if (result is null)
+            _cacheService.Remove(MethodBase.GetCurrentMethod()!.DeclaringType!.FullName! + dateRange.CityId);
 
         return result;
     }
