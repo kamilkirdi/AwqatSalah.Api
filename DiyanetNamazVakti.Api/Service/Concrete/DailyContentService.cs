@@ -1,4 +1,6 @@
-﻿namespace DiyanetNamazVakti.Api.Service.Implementations;
+﻿using DiyanetNamazVakti.Api.Service.Interfaces;
+
+namespace DiyanetNamazVakti.Api.Service.Concrete;
 
 public class DailyContentService : IDailyContentService
 {

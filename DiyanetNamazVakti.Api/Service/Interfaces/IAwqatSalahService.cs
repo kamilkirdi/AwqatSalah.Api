@@ -1,6 +1,4 @@
-﻿using PrayerTime.Service.Models;
-
-namespace DiyanetNamazVakti.Api.Service;
+﻿namespace DiyanetNamazVakti.Api.Service.Interfaces;
 
 public interface IAwqatSalahService
 {

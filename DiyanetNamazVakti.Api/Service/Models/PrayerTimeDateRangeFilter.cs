@@ -1,4 +1,4 @@
-﻿namespace PrayerTime.Service.Models;
+﻿namespace DiyanetNamazVakti.Api.Service.Models;
 
 public class DateRangeFilter
 {

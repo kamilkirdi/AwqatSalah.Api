@@ -1,7 +1,8 @@
 ﻿using static System.Net.Mime.MediaTypeNames;
 using System.Net.Http.Headers;
+using DiyanetNamazVakti.Api.Service.Interfaces;
 
-namespace DiyanetNamazVakti.Api.Service.Implementations;
+namespace DiyanetNamazVakti.Api.Service.Concrete;
 
 public class AwqatSalahApiService : IAwqatSalahConnectService
 {

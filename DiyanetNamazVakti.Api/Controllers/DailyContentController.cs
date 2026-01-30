@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DiyanetNamazVakti.Api.Service.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DiyanetNamazVakti.Api.Controllers;
 

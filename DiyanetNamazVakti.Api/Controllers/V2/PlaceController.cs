@@ -1,7 +1,8 @@
 ﻿using Asp.Versioning;
+using DiyanetNamazVakti.Api.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace PrayerTime.Web.Api.Controllers.v1;
+namespace DiyanetNamazVakti.Api.Controllers.V2;
 
 [Route("api/v{version:apiVersion}/[controller]")]
 [ApiController]

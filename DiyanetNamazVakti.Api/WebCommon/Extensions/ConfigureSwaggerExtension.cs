@@ -1,5 +1,5 @@
-﻿using Asp.Versioning.ApiExplorer;
-using Microsoft.OpenApi.Models;
+using Asp.Versioning.ApiExplorer;
+using Microsoft.OpenApi;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace DiyanetNamazVakti.Api.WebCommon.Extensions;
@@ -16,20 +16,15 @@ public static class ConfigureSwaggerExtension
                 Description = "JWT containing userid claim",
                 Name = "Authorization",
                 In = ParameterLocation.Header,
-                Type = SecuritySchemeType.ApiKey,
+                Type = SecuritySchemeType.Http,
+                BearerFormat = "JWT",
+                Scheme = "Bearer"
             });
 
-            c.AddSecurityRequirement(new OpenApiSecurityRequirement {
-        {
-            new OpenApiSecurityScheme
+            c.AddSecurityRequirement(document => new OpenApiSecurityRequirement
             {
-                Reference = new OpenApiReference {
-                    Id = "Bearer",
-                    Type = ReferenceType.SecurityScheme
-                },
-                UnresolvedReference = true
-            }, new List<string>() }
-        });
+                [new OpenApiSecuritySchemeReference("Bearer", document)] = []
+            });
         });
 
         services.ConfigureOptions<ConfigureSwaggerOptions>();
@@ -37,7 +32,7 @@ public static class ConfigureSwaggerExtension
         return services;
     }
 
-    public static IApplicationBuilder UseSwagger(this IApplicationBuilder app, IApiVersionDescriptionProvider provider)
+    public static IApplicationBuilder UseSwaggerWithVersioning(this IApplicationBuilder app, IApiVersionDescriptionProvider provider)
     {
         app.UseSwagger();
         app.UseSwaggerUI(options =>
@@ -78,7 +73,7 @@ public static class ConfigureSwaggerExtension
         /// </summary>
         /// <param name="name"></param>
         /// <param name="options"></param>
-        public void Configure(string name, SwaggerGenOptions options)
+        public void Configure(string? name, SwaggerGenOptions options)
         {
             Configure(options);
         }
@@ -98,7 +93,7 @@ public static class ConfigureSwaggerExtension
 
             if (desc.IsDeprecated)
             {
-                info.Description += " This API version has been deprecated. Please use one of the new APIs available from the explorer.";
+                info.Description = "This API version has been deprecated. Please use one of the new APIs available from the explorer.";
             }
 
             return info;

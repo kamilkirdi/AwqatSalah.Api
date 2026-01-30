@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DiyanetNamazVakti.Api.Service.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
-namespace DiyanetNamazVakti.Api.Web.Api.Controllers;
+namespace DiyanetNamazVakti.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]

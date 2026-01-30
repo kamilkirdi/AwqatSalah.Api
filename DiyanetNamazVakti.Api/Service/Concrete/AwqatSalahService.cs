@@ -1,7 +1,6 @@
-﻿using DiyanetNamazVakti.Api.Core.ValueObjects;
-using PrayerTime.Service.Models;
+﻿using DiyanetNamazVakti.Api.Service.Interfaces;
 
-namespace DiyanetNamazVakti.Api.Service.Implementations;
+namespace DiyanetNamazVakti.Api.Service.Concrete;
 
 public class AwqatSalahService : IAwqatSalahService
 {

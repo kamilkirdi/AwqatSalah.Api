@@ -1,4 +1,6 @@
 using Asp.Versioning.ApiExplorer;
+using DiyanetNamazVakti.Api.Service.Concrete;
+using DiyanetNamazVakti.Api.Service.Interfaces;
 using DiyanetNamazVakti.Api.WebCommon.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -60,7 +62,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     var apiVersionDescriptionProvider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
-    app.UseSwagger(apiVersionDescriptionProvider);
+    app.UseSwaggerWithVersioning(apiVersionDescriptionProvider);
     //app.UseSwaggerUI();
 }
 else

@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using PrayerTime.Service.Models;
+﻿using DiyanetNamazVakti.Api.Service.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DiyanetNamazVakti.Api.Controllers;
 
